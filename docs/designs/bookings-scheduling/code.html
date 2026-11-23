@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#93000a", "on-surface-variant": "#c8c4d6", "on-secondary-container": "#004432", "surface-variant": "#32343f", "secondary-fixed": "#6afbc9", "primary-fixed": "#e4dfff", "background": "#10131c", "inverse-primary": "#5a49cb", "on-primary": "#2a039d", "on-tertiary": "#452b00", "on-error-container": "#ffdad6", "surface-tint": "#c7bfff", "on-primary-container": "#24008c", "outline": "#928f9f", "outline-variant": "#474554", "on-error": "#690005", "on-background": "#e0e2ef", "tertiary-fixed-dim": "#f8bc63", "on-tertiary-container": "#3c2500", "on-secondary-fixed": "#002116", "surface-dim": "#10131c", "on-secondary": "#003828", "surface-container-highest": "#32343f", "secondary": "#47deae", "inverse-on-surface": "#2d303a", "surface-container-high": "#272a33", "on-surface": "#e0e2ef", "error": "#ffb4ab", "surface-container-low": "#181b25", "on-secondary-fixed-variant": "#00513c", "secondary-fixed-dim": "#47deae", "secondary-container": "#00bc8e", "surface-container-lowest": "#0b0e17", "on-primary-fixed-variant": "#422db2", "surface-container": "#1c1f29", "tertiary": "#f8bc63", "on-tertiary-fixed": "#291800", "surface-bright": "#363943", "tertiary-container": "#bc8734", "primary": "#c7bfff", "on-tertiary-fixed-variant": "#624000", "primary-fixed-dim": "#c7bfff", "primary-container": "#8e7fff", "inverse-surface": "#e0e2ef", "surface": "#10131c", "on-primary-fixed": "#170065", "tertiary-fixed": "#ffddb2" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-md": "0.75rem", "margin": "2rem", "gutter": "1.25rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem" }, "fontFamily": { "label-md": ["Inter"], "body-lg": ["Inter"], "code-num": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["Inter"], "title-sm": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"] }, "fontSize": { "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}], "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}], "code-num": ["13px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500"}], "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}], "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}], "title-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}], "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400"}], "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "600"}], "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}], "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[248px] bg-surface-container-low border-r border-outline-variant/40 z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-[72px] px-space-lg flex items-center justify-between border-b border-outline-variant/40"><div class="flex items-center gap-space-sm"><img alt="Bizora Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyb_Mb44_0OrjF3xOCn1j9sGgYsCTbPz8w2W-r9zk3jNZdNoW-0vxLhMY4ghESYhLfhAY1cqM0ZbWKr5kQYB1XunAZBqY52TfHTrZh4jTQqjjdnfBaBznSC9Bwme9SSq8CDZB2lHZ2aNXNYUB0R-lkB8J0T_a1DY7FFtkXSNXv83swWDsykQ9nfFtrQQpKoh6fffB_Z6tY_-ZFeuq9p2eEZ5L40_lJBtnz1T4_7Eg"/><span class="font-title-sm text-title-sm text-on-surface font-semibold tracking-tight">Bizora</span></div><span class="px-space-xs py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm uppercase">Pro</span></div><nav class="flex flex-col gap-1 px-3 py-space-md" data-active-classes="bg-surface-container-high text-primary font-medium shadow-[inset_2px_0_0_0_#8e7fff]"><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Dashboard</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="customers" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-container-high text-primary font-medium shadow-[inset_2px_0_0_0_#8e7fff] transition-colors font-body-sm text-body-sm" data-path="bookings-and-scheduling" href="#"><span class="material-symbols-outlined text-[20px]">calendar_month</span><span>Bookings &amp; Scheduling</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="payments-and-invoices" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Payments &amp; Invoices</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="business-records" href="#"><span class="material-symbols-outlined text-[20px]">folder_managed</span><span>Business Records</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Reports &amp; Analytics</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="team-and-employees" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span>Team &amp; Employees</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="business-settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Business Settings</span></a></nav></div><div class="p-3"><div class="p-space-md rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Workspace Tier</span><span class="font-code-num text-code-num text-secondary font-medium">82% Used</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-secondary h-full rounded-full w-[82%]"></div></div><div class="flex items-center justify-between pt-1"><span class="font-body-sm text-body-sm text-on-surface-variant">41 / 50 Client Slots</span><a class="text-primary hover:text-primary-fixed-dim font-label-sm text-label-sm font-semibold" href="#">Upgrade</a></div></div></div></aside><div class="pl-[248px]"><header class="fixed top-0 left-[248px] right-0 h-[72px] bg-surface-container-low/80 backdrop-blur-xl border-b border-outline-variant/40 z-40 px-space-xl flex items-center justify-between gap-space-lg"><div class="flex-1 max-w-md relative"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span><input class="w-full h-10 pl-9 pr-12 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search clients, appointments, invoices..." type="text"/><span class="absolute right-2.5 top-1/2 -translate-y-1/2 font-code-num text-[11px] px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant border border-outline-variant/60">⌘K</span></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-2 h-10 px-space-lg rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md hover:bg-primary-container/90 transition-all font-semibold shadow-[0_1px_6px_rgba(0,0,0,0.2)]" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>New Booking</span></button><div class="h-6 w-px bg-outline-variant/40 mx-1"></div><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-low"></span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><div class="flex items-center gap-space-sm pl-2 cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwl3cQ6sHBsxBUuIpa8D5zoJTn7XFQrl-xuQ7vdU-dHvK7jDEa_-gkkNiIvAxqbnvdHUlMWMTO-Jdrjg1ctw1cp-mZ8yGz7ptVp4RJ5EWBNYQtb7xPwan6s4R-MDdsRr6RRSnshg9OEBXeM45kgIRUbNgwiQrz1Ak9C4DUtlGGqTuP0zCfjI73Doz9wkWP-6HYpFiCN0w6gRQMI3umZXEqotbC_7i4K_qeF52Zhc"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Alex Morgan</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Owner / Admin</span></div><span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span></div></div></header><main class="w-full pt-[72px] p-margin min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command & Action Bar -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg mb-space-xl">
+<div>
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary px-2 py-0.5 rounded-full bg-secondary/10">Operations Center</span>
+<span class="text-outline text-body-sm">•</span>
+<span class="font-code-num text-code-num text-on-surface-variant">Live Sync: Active (11:15 AM EDT)</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Bookings &amp; Scheduling</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Manage appointments, staff schedules, and customer bookings across all facility bays.</p>
+</div>
+<!-- Top Action Utility Bar -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-2 h-10 px-space-md rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">sync</span>
+<span>Sync Calendar</span>
+</button>
+<button class="flex items-center gap-2 h-10 px-space-md rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">file_download</span>
+<span>Export Schedule</span>
+</button>
+<button class="flex items-center gap-2 h-10 px-space-lg rounded-lg bg-primary-container text-on-primary-container hover:bg-primary-container/90 transition-all font-label-md text-label-md font-semibold shadow-[0_1px_6px_rgba(0,0,0,0.25)]" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ New Booking</span>
+</button>
+</div>
+</div>
+<!-- Operational Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Metric 1: Today's Bookings -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Today's Bookings</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display text-display text-on-surface">18</span>
+<span class="font-code-num text-code-num text-on-surface-variant">/ 22 max</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs">
+<div class="flex items-center justify-between text-label-sm font-label-sm mb-1.5">
+<span class="text-secondary font-medium">8 Completed</span>
+<span class="text-on-surface-variant">10 Remaining</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-[45%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric 2: Upcoming Bookings -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Upcoming Bookings</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display text-display text-on-surface">42</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary/10 text-secondary">+14% vs lw</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">event_upcoming</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Next 7 days fully scheduled</span>
+<span class="font-code-num text-code-num text-primary">92% load</span>
+</div>
+</div>
+<!-- Metric 3: Completed This Week -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Completed This Week</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display text-display text-on-surface">76</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary/10 text-secondary">96.2% show-up</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Client retention index</span>
+<span class="font-code-num text-code-num text-secondary">Top 5%</span>
+</div>
+</div>
+<!-- Metric 4: Cancelled This Month -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Cancelled This Month</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display text-display text-on-surface">8</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container/40 text-error">2.4% rate</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[22px]">event_busy</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">6 rescheduled within 48h</span>
+<span class="font-code-num text-code-num text-on-surface-variant">75% rescued</span>
+</div>
+</div>
+</div>
+<!-- Scheduling Control Toolbar -->
+<div class="bg-surface-container p-space-md rounded-xl mb-space-lg flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md shadow-sm">
+<!-- Left: Date Navigator & View Switcher -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-lowest rounded-lg p-0.5">
+<button aria-label="Previous week" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-3 font-title-sm text-title-sm text-on-surface font-medium select-none">October 21 – 27, 2024</span>
+<button aria-label="Next week" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<button class="h-8 px-3 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-variant font-label-md text-label-md font-medium transition-colors" type="button">
+        Today
+      </button>
+<div class="h-5 w-px bg-outline-variant/30 mx-1 hidden sm:block"></div>
+<!-- View Selector -->
+<div class="inline-flex rounded-lg bg-surface-container-lowest p-0.5">
+<button class="px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">Day</button>
+<button class="px-3 py-1 rounded-md bg-surface-container-high text-primary font-label-md text-label-md font-semibold transition-colors" type="button">Week</button>
+<button class="px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">Month</button>
+</div>
+</div>
+<!-- Right: Filter dropdowns & search -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Search -->
+<div class="relative min-w-[240px] flex-1 sm:flex-initial">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-outline">search</span>
+<input class="w-full h-8 pl-8 pr-8 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary-container" placeholder="Search bookings, clients, or staff..." type="text"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 font-code-num text-[10px] text-on-surface-variant bg-surface-container px-1 py-0.5 rounded">⌘F</span>
+</div>
+<!-- Staff Filter -->
+<div class="relative">
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm flex items-center gap-1.5 hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+<span>Staff: All (4)</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+<!-- Status Filter -->
+<div class="relative">
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm flex items-center gap-1.5 hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">filter_alt</span>
+<span>Status: All</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+<!-- Services Filter -->
+<div class="relative">
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm flex items-center gap-1.5 hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">category</span>
+<span>All Services</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Split Layout: Calendar (70%) vs Today's Schedule (30%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left: Weekly Interactive Calendar Matrix (8 of 12 columns on large screens) -->
+<div class="lg:col-span-8 bg-surface-container rounded-xl overflow-hidden shadow-sm flex flex-col">
+<!-- Calendar Days Header -->
+<div class="grid grid-cols-8 bg-surface-container-lowest text-on-surface-variant py-3 px-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-center text-outline">Time</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Mon</span>
+<span class="font-title-sm text-title-sm text-on-surface font-medium">21</span>
+</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Tue</span>
+<span class="font-title-sm text-title-sm text-on-surface font-medium">22</span>
+</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Wed</span>
+<span class="font-title-sm text-title-sm text-on-surface font-medium">23</span>
+</div>
+<!-- Thursday = TODAY highlight -->
+<div class="text-center bg-surface-container-high/60 rounded-lg py-1 px-0.5">
+<span class="font-label-sm text-label-sm uppercase block text-primary font-semibold">Thu</span>
+<div class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary-container text-on-primary-container font-title-sm text-title-sm font-semibold mx-auto">24</div>
+</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Fri</span>
+<span class="font-title-sm text-title-sm text-on-surface font-medium">25</span>
+</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Sat</span>
+<span class="font-title-sm text-title-sm text-on-surface-variant font-medium">26</span>
+</div>
+<div class="text-center">
+<span class="font-label-sm text-label-sm uppercase block text-outline">Sun</span>
+<span class="font-title-sm text-title-sm text-on-surface-variant font-medium">27</span>
+</div>
+</div>
+<!-- Time Axis & Grid Board Area -->
+<div class="relative overflow-x-auto min-h-[760px] select-none">
+<!-- 11 Hour Rows (08:00 to 18:00) -->
+<div class="relative grid grid-cols-8 divide-x divide-surface-container-high/40">
+<!-- Column 0: Time Labels -->
+<div class="flex flex-col bg-surface-container-lowest/30">
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">08:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">09:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">10:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">11:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">12:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">13:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">14:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">15:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">16:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">17:00</div>
+<div class="h-16 flex items-start justify-center pt-1 font-code-num text-[11px] text-outline">18:00</div>
+</div>
+<!-- Column 1: Mon 21 -->
+<div class="relative h-[704px] bg-transparent">
+<!-- Appointment Card: Daniel Wilson -->
+<div class="absolute top-[128px] left-1 right-1 h-[78px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">Daniel Wilson</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant truncate block">Biomechanics</span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>10:00 - 11:15</span>
+<span class="text-primary truncate max-w-[40px]">Alex M.</span>
+</div>
+</div>
+</div>
+<!-- Column 2: Tue 22 -->
+<div class="relative h-[704px] bg-transparent">
+<!-- Free bay placeholder subtle grid lines -->
+</div>
+<!-- Column 3: Wed 23 -->
+<div class="relative h-[704px] bg-transparent">
+<!-- Appointment: Clara Evans -->
+<div class="absolute top-[384px] left-1 right-1 h-[60px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">Clara Evans</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>14:00 - 15:00</span>
+<span class="text-tertiary">Nutrition</span>
+</div>
+</div>
+</div>
+<!-- Column 4: Thu 24 (TODAY - Active Column) -->
+<div class="relative h-[704px] bg-surface-container-high/20">
+<!-- Current Time Indicator (11:15 AM = 3.25 hrs from 08:00 = 208px from top) -->
+<div class="absolute top-[208px] -left-2 -right-2 z-30 flex items-center pointer-events-none">
+<span class="w-2.5 h-2.5 rounded-full bg-error ring-4 ring-error/20"></span>
+<div class="h-0.5 w-full bg-error"></div>
+<span class="font-code-num text-[10px] font-semibold text-error bg-surface-container-lowest px-1 rounded shadow">11:15</span>
+</div>
+<!-- Thu Booking 1: Sarah Johnson (09:00 - 10:15) = top 64px, h 80px -->
+<div class="absolute top-[64px] left-1 right-1 h-[78px] rounded-lg p-2 bg-primary/10 hover:bg-primary/20 cursor-pointer transition-all flex flex-col justify-between z-10 shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-primary-fixed truncate">Sarah Johnson</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant truncate block">1-on-1 Training</span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-on-surface-variant">
+<span>09:00 - 10:15</span>
+<span class="text-secondary font-medium">Elena R.</span>
+</div>
+</div>
+<!-- Thu Booking 2: Michael Williams (10:30 - 11:30) = top 160px, h 64px (In Progress) -->
+<div class="absolute top-[160px] left-1 right-1 h-[64px] rounded-lg p-2 bg-primary-container text-on-primary-container cursor-pointer transition-all flex flex-col justify-between z-20 shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-bold truncate">Michael Williams</span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+</span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num opacity-90">
+<span>10:30 - 11:30</span>
+<span class="font-medium">Active Now</span>
+</div>
+</div>
+<!-- Thu Booking 3: Emma Brown (12:00 - 13:00) = top 256px, h 64px -->
+<div class="absolute top-[256px] left-1 right-1 h-[64px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">Emma Brown</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>12:00 - 13:00</span>
+<span class="text-primary truncate">Olivia M.</span>
+</div>
+</div>
+<!-- Thu Booking 4: James Anderson (14:00 - 15:15) = top 384px, h 80px -->
+<div class="absolute top-[384px] left-1 right-1 h-[78px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">James Anderson</span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant truncate block">Fitness Assessment</span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>14:00 - 15:15</span>
+<span class="text-tertiary truncate">Dr. Chen</span>
+</div>
+</div>
+<!-- Thu Booking 5: Olivia Smith (15:30 - 16:30) = top 480px, h 64px -->
+<div class="absolute top-[480px] left-1 right-1 h-[64px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">Olivia Smith</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>15:30 - 16:30</span>
+<span class="text-primary truncate">Dr. Chen</span>
+</div>
+</div>
+<!-- Thu Booking 6: Liam O'Connor (16:45 - 17:30) = top 560px, h 48px (Cancelled) -->
+<div class="absolute top-[560px] left-1 right-1 h-[48px] rounded-lg p-1.5 bg-surface-container-lowest/70 opacity-60 line-through cursor-pointer transition-all flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] text-outline truncate">Liam O'Connor</span>
+<span class="text-[9px] text-error font-code-num no-underline">CANC</span>
+</div>
+<span class="text-[9px] text-outline font-code-num">16:45 - 17:30</span>
+</div>
+</div>
+<!-- Column 5: Fri 25 -->
+<div class="relative h-[704px] bg-transparent">
+<!-- Appointment: David Kim (11:00) -->
+<div class="absolute top-[192px] left-1 right-1 h-[64px] rounded-lg p-2 bg-surface-container-high/90 hover:bg-surface-variant cursor-pointer transition-all flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface truncate">David Kim</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between text-[10px] font-code-num text-outline">
+<span>11:00 - 12:00</span>
+<span class="text-secondary truncate">Rehab</span>
+</div>
+</div>
+</div>
+<!-- Column 6: Sat 26 -->
+<div class="relative h-[704px] bg-surface-container-lowest/10">
+<!-- Weekend light block -->
+</div>
+<!-- Column 7: Sun 27 -->
+<div class="relative h-[704px] bg-surface-container-lowest/10">
+<!-- Weekend light block -->
+</div>
+</div>
+</div>
+<!-- Calendar Footer Legend -->
+<div class="p-space-sm bg-surface-container-lowest/50 flex flex-wrap items-center justify-between gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Confirmed</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>In Progress</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Pending Waiver</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Cancelled</span>
+</div>
+</div>
+<div class="font-code-num text-[11px] text-outline">Timezone: UTC-04:00 (America/New_York)</div>
+</div>
+</div>
+<!-- Right: Today's Schedule Live Operational Panel (4 of 12 columns) -->
+<div class="lg:col-span-4 bg-surface-container rounded-xl p-space-lg flex flex-col gap-space-lg shadow-sm">
+<!-- Section Header -->
+<div class="flex items-center justify-between pb-space-sm">
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">Today's Schedule</h2>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-code-num text-code-num text-on-surface-variant">Thu, Oct 24 • 18 Total</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<!-- Staff Roster Capacity Pills -->
+<div class="flex flex-col gap-1.5 bg-surface-container-lowest p-space-md rounded-xl">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1">Staff Capacity (Active Shifts)</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface font-code-num text-[11px] flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Elena R. (4/5 full)
+          </span>
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface font-code-num text-[11px] flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            Dr. Chen (Full)
+          </span>
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface font-code-num text-[11px] flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Olivia M. (3 open)
+          </span>
+</div>
+</div>
+<!-- Chronological Today's Bookings List -->
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Sarah Johnson (Completed) -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-outline">09:00 - 10:15</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-[11px] font-medium">Completed</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-on-surface">Sarah Johnson</span>
+<span class="font-label-sm text-[11px] text-outline">Bay 02</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>1-on-1 Personal Training</span>
+<span class="text-primary-fixed-dim font-medium">Coach Elena R.</span>
+</div>
+</div>
+<!-- Item 2: Michael Williams (In Progress) -->
+<div class="p-space-md rounded-lg bg-surface-container-high transition-colors flex flex-col gap-1 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-primary-fixed font-semibold">10:30 - 11:30</span>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-[11px] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+              In Progress
+            </span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-on-surface">Michael Williams</span>
+<span class="font-label-sm text-[11px] text-primary">Consultation Suite A</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Initial Movement Assessment</span>
+<span class="text-on-surface font-medium">Alex Morgan</span>
+</div>
+</div>
+<!-- Item 3: Emma Brown (Confirmed / Upcoming) -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-outline">12:00 - 13:00</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-[11px]">Confirmed</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-on-surface">Emma Brown</span>
+<span class="font-label-sm text-[11px] text-outline">Bay 04</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Development Session</span>
+<span class="text-primary-fixed-dim font-medium">Olivia Martin</span>
+</div>
+</div>
+<!-- Item 4: James Anderson (Pending Waiver) -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-outline">14:00 - 15:15</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-sm text-[11px] font-medium">Pending Waiver</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-on-surface">James Anderson</span>
+<span class="font-label-sm text-[11px] text-outline">Lab 01</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Biomechanical Fitness Assessment</span>
+<span class="text-primary-fixed-dim font-medium">Dr. Sarah Chen</span>
+</div>
+</div>
+<!-- Item 5: Olivia Smith (Confirmed) -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-outline">15:30 - 16:30</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-[11px]">Confirmed</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-on-surface">Olivia Smith</span>
+<span class="font-label-sm text-[11px] text-outline">Consultation Suite B</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Post-Op Recovery Follow-up</span>
+<span class="text-primary-fixed-dim font-medium">Dr. Sarah Chen</span>
+</div>
+</div>
+<!-- Item 6: Liam O'Connor (Cancelled) -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest opacity-70 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-num text-[12px] text-outline line-through">16:45 - 17:30</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container/20 text-error font-label-sm text-[11px]">Cancelled</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-title-sm text-title-sm text-outline line-through">Liam O'Connor</span>
+<span class="font-label-sm text-[11px] text-outline">Bay 01</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-outline">
+<span>Strength Recovery</span>
+<span class="text-outline">Elena R.</span>
+</div>
+</div>
+</div>
+<!-- Quick Fast-Slot Widget -->
+<div class="p-space-md rounded-xl bg-gradient-to-br from-surface-container-highest/70 to-surface-container-high flex items-center justify-between mt-auto">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-semibold block leading-tight">Need a fast slot?</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant block">Auto-match open facility bay</span>
+</div>
+</div>
+<button class="h-8 px-3 rounded-lg bg-primary text-on-primary hover:bg-primary/90 font-label-sm text-label-sm font-semibold transition-all" type="button">
+          + Fast Slot
+        </button>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

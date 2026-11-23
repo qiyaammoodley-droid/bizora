@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#93000a", "on-surface-variant": "#c8c4d6", "on-secondary-container": "#004432", "surface-variant": "#32343f", "secondary-fixed": "#6afbc9", "primary-fixed": "#e4dfff", "background": "#10131c", "inverse-primary": "#5a49cb", "on-primary": "#2a039d", "on-tertiary": "#452b00", "on-error-container": "#ffdad6", "surface-tint": "#c7bfff", "on-primary-container": "#24008c", "outline": "#928f9f", "outline-variant": "#474554", "on-error": "#690005", "on-background": "#e0e2ef", "tertiary-fixed-dim": "#f8bc63", "on-tertiary-container": "#3c2500", "on-secondary-fixed": "#002116", "surface-dim": "#10131c", "on-secondary": "#003828", "surface-container-highest": "#32343f", "secondary": "#47deae", "inverse-on-surface": "#2d303a", "surface-container-high": "#272a33", "on-surface": "#e0e2ef", "error": "#ffb4ab", "surface-container-low": "#181b25", "on-secondary-fixed-variant": "#00513c", "secondary-fixed-dim": "#47deae", "secondary-container": "#00bc8e", "surface-container-lowest": "#0b0e17", "on-primary-fixed-variant": "#422db2", "surface-container": "#1c1f29", "tertiary": "#f8bc63", "on-tertiary-fixed": "#291800", "surface-bright": "#363943", "tertiary-container": "#bc8734", "primary": "#c7bfff", "on-tertiary-fixed-variant": "#624000", "primary-fixed-dim": "#c7bfff", "primary-container": "#8e7fff", "inverse-surface": "#e0e2ef", "surface": "#10131c", "on-primary-fixed": "#170065", "tertiary-fixed": "#ffddb2" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-md": "0.75rem", "margin": "2rem", "gutter": "1.25rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem" }, "fontFamily": { "label-md": ["Inter"], "body-lg": ["Inter"], "code-num": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["Inter"], "title-sm": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"] }, "fontSize": { "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}], "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}], "code-num": ["13px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500"}], "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}], "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}], "title-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}], "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400"}], "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "600"}], "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}], "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[248px] bg-surface-container-low border-r border-outline-variant/40 z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-[72px] px-space-lg flex items-center justify-between border-b border-outline-variant/40"><div class="flex items-center gap-space-sm"><img alt="Bizora Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyb_Mb44_0OrjF3xOCn1j9sGgYsCTbPz8w2W-r9zk3jNZdNoW-0vxLhMY4ghESYhLfhAY1cqM0ZbWKr5kQYB1XunAZBqY52TfHTrZh4jTQqjjdnfBaBznSC9Bwme9SSq8CDZB2lHZ2aNXNYUB0R-lkB8J0T_a1DY7FFtkXSNXv83swWDsykQ9nfFtrQQpKoh6fffB_Z6tY_-ZFeuq9p2eEZ5L40_lJBtnz1T4_7Eg"/><span class="font-title-sm text-title-sm text-on-surface font-semibold tracking-tight">Bizora</span></div><span class="px-space-xs py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm uppercase">Pro</span></div><nav class="flex flex-col gap-1 px-3 py-space-md" data-active-classes="bg-surface-container-high text-primary font-medium shadow-[inset_2px_0_0_0_#8e7fff]"><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Dashboard</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="customers" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="bookings-and-scheduling" href="#"><span class="material-symbols-outlined text-[20px]">calendar_month</span><span>Bookings &amp; Scheduling</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="payments-and-invoices" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Payments &amp; Invoices</span></a><a aria-current="page" class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors bg-surface-container-high text-primary font-medium shadow-[inset_2px_0_0_0_#8e7fff]" data-path="business-records" href="#"><span class="material-symbols-outlined text-[20px]">folder_managed</span><span>Business Records</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Reports &amp; Analytics</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="team-and-employees" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span>Team &amp; Employees</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="business-settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Business Settings</span></a></nav></div><div class="p-3"><div class="p-space-md rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Workspace Tier</span><span class="font-code-num text-code-num text-secondary font-medium">82% Used</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-secondary h-full rounded-full w-[82%]"></div></div><div class="flex items-center justify-between pt-1"><span class="font-body-sm text-body-sm text-on-surface-variant">41 / 50 Client Slots</span><a class="text-primary hover:text-primary-fixed-dim font-label-sm text-label-sm font-semibold" href="#">Upgrade</a></div></div></div></aside><div class="pl-[248px]"><header class="fixed top-0 left-[248px] right-0 h-[72px] bg-surface-container-low/80 backdrop-blur-xl border-b border-outline-variant/40 z-40 px-space-xl flex items-center justify-between gap-space-lg"><div class="flex-1 max-w-md relative"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span><input class="w-full h-10 pl-9 pr-12 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search clients, appointments, invoices..." type="text"/><span class="absolute right-2.5 top-1/2 -translate-y-1/2 font-code-num text-[11px] px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant border border-outline-variant/60">⌘K</span></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-2 h-10 px-space-lg rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md hover:bg-primary-container/90 transition-all font-semibold shadow-[0_1px_6px_rgba(0,0,0,0.2)]" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>New Booking</span></button><div class="h-6 w-px bg-outline-variant/40 mx-1"></div><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-low"></span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><div class="flex items-center gap-space-sm pl-2 cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwl3cQ6sHBsxBUuIpa8D5zoJTn7XFQrl-xuQ7vdU-dHvK7jDEa_-gkkNiIvAxqbnvdHUlMWMTO-Jdrjg1ctw1cp-mZ8yGz7ptVp4RJ5EWBNYQtb7xPwan6s4R-MDdsRr6RRSnshg9OEBXeM45kgIRUbNgwiQrz1Ak9C4DUtlGGqTuP0zCfjI73Doz9wkWP-6HYpFiCN0w6gRQMI3umZXEqotbC_7i4K_qeF52Zhc"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Alex Morgan</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Owner / Admin</span></div><span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span></div></div></header><main class="w-full pt-[72px] p-margin min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Top Level Notification / Toast Placeholder -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-highest text-on-surface shadow-2xl" id="statusToast">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium" id="toastMessage">Record updated successfully.</span>
+</div>
+<!-- Header Section with Breadcrumbs and Global Actions -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1.5 max-w-2xl">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Workspace</span>
+<span class="text-outline text-xs">/</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Records &amp; History</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-semibold flex items-center gap-3">
+          Business Records
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[11px] font-label-sm font-medium tracking-normal">
+<span class="material-symbols-outlined text-[13px] text-primary">lock</span>
+            Confidential (Tier 2+)
+          </span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Keep customer service histories, notes, and critical operational documentation organized with strict audit trails.
+        </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="group flex items-center gap-2 h-10 px-4 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+<span>Export Audit Log</span>
+</button>
+<button class="flex items-center gap-2 h-10 px-5 rounded-lg bg-primary-container text-on-primary-container hover:opacity-95 font-label-md text-label-md font-semibold transition-all shadow-md active:scale-95" id="addRecordBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Record</span>
+</button>
+</div>
+</div>
+<!-- Privacy & Compliance Notice Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low p-4 shadow-sm">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm text-on-surface font-medium">Compliance-Enforced Repository</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary text-[11px] font-label-sm uppercase tracking-wide">HIPAA / GDPR Ready</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Access is restricted to authorized practitioners and administrators. All modifications and view events are permanently logged. Minor/Guardian Consent Verified protocols are active.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-4 self-end lg:self-center shrink-0">
+<div class="flex items-center gap-2 font-code-num text-code-num text-secondary">
+<span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span>
+<span>Tamper-proof Node 04A Active</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim underline underline-offset-4" href="#">Policy Docs</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary KPI Cards (4 Cards Grid) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+<!-- Metric 1 -->
+<div class="flex flex-col justify-between p-5 rounded-xl bg-surface-container-low shadow-sm transition-all hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Records</span>
+<div class="p-2 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[18px]">folder_managed</span>
+</div>
+</div>
+<div class="my-3">
+<div class="font-display text-display text-on-surface font-semibold tracking-tight">1,482</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +8.5% YoY
+          </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">94% encrypted</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 overflow-hidden mt-1">
+<div class="bg-primary-container h-full rounded-full" style="width: 94%;"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col justify-between p-5 rounded-xl bg-surface-container-low shadow-sm transition-all hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Added This Month</span>
+<div class="p-2 rounded-lg bg-surface-container-high text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</div>
+</div>
+<div class="my-3">
+<div class="font-display text-display text-on-surface font-semibold tracking-tight">124</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+            +16 this week
+          </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All signed off</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 overflow-hidden mt-1">
+<div class="bg-secondary h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col justify-between p-5 rounded-xl bg-surface-container-low shadow-sm transition-all hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Awaiting Review</span>
+<div class="p-2 rounded-lg bg-tertiary-container/20 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+</div>
+<div class="my-3">
+<div class="font-display text-display text-tertiary font-semibold tracking-tight">18</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-semibold">
+            4 Urgent
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compliance sign-off</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 overflow-hidden mt-1">
+<div class="bg-tertiary h-full rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="flex flex-col justify-between p-5 rounded-xl bg-surface-container-low shadow-sm transition-all hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Updated This Week</span>
+<div class="p-2 rounded-lg bg-surface-container-high text-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</div>
+</div>
+<div class="my-3">
+<div class="font-display text-display text-on-surface font-semibold tracking-tight">67</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-code-num text-code-num text-primary">Audit Logged</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">0 anomalies</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+<!-- Main Grid: Split Layout (Records List & Dynamic Preview Panel) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT PANEL: Records Management & Filterable Table (~65% -> 8 cols) -->
+<section class="lg:col-span-8 flex flex-col gap-4">
+<!-- Toolbar: Search, Filters & Tabs -->
+<div class="rounded-xl bg-surface-container-low p-4 shadow-sm flex flex-col gap-4">
+<!-- Search & Quick Filters -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span>
+<input class="w-full h-10 pl-9 pr-14 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all" id="searchInput" placeholder="Search records by title, keyword, ID, or customer..." type="text"/>
+<span class="absolute right-2.5 top-1/2 -translate-y-1/2 font-code-num text-[11px] px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant">⌘K</span>
+</div>
+<div class="flex items-center gap-2">
+<!-- Customer Filter Dropdown -->
+<select class="h-10 px-3 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+<option value="all">All Customers</option>
+<option value="sarah">Sarah Johnson (#CUS-8841)</option>
+<option value="michael">Michael Williams (#CUS-8794)</option>
+<option value="emma">Emma Brown (#CUS-8519)</option>
+<option value="james">James Anderson (#CUS-8652)</option>
+<option value="olivia">Olivia Smith (#CUS-8730)</option>
+</select>
+<!-- Assigned Employee Dropdown -->
+<select class="h-10 px-3 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+<option value="all">All Staff</option>
+<option value="chen">Dr. Sarah Chen</option>
+<option value="morgan">Alex Morgan</option>
+<option value="martin">Olivia Martin</option>
+<option value="elena">Coach Elena R.</option>
+</select>
+<!-- Status Dropdown -->
+<select class="h-10 px-3 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+<option value="all">All Statuses</option>
+<option value="approved">Approved</option>
+<option value="pending">Pending Review</option>
+<option value="draft">Draft</option>
+</select>
+</div>
+</div>
+<!-- Category Horizontal Segmented Filter Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 text-nowrap">
+<button class="filter-tab active px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold transition-all">
+            All Records <span class="ml-1.5 px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-xs">1,482</span>
+</button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all">
+            Assessments <span class="ml-1 px-1.5 py-0.2 rounded-full bg-surface-variant text-[10px]">342</span>
+</button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all">
+            Session Notes <span class="ml-1 px-1.5 py-0.2 rounded-full bg-surface-variant text-[10px]">680</span>
+</button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all">
+            Progress Reports <span class="ml-1 px-1.5 py-0.2 rounded-full bg-surface-variant text-[10px]">215</span>
+</button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all">
+            Follow-ups <span class="ml-1 px-1.5 py-0.2 rounded-full bg-surface-variant text-[10px]">118</span>
+</button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all">
+            General Documents <span class="ml-1 px-1.5 py-0.2 rounded-full bg-surface-variant text-[10px]">127</span>
+</button>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="rounded-xl bg-surface-container-low shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider h-11">
+<th class="px-4 py-2 w-10 text-center">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</th>
+<th class="px-4 py-2">Record Title &amp; Ref ID</th>
+<th class="px-4 py-2">Associated Customer</th>
+<th class="px-4 py-2">Category</th>
+<th class="px-4 py-2">Assigned Staff</th>
+<th class="px-4 py-2">Last Modified</th>
+<th class="px-4 py-2">Status</th>
+<th class="px-4 py-2 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y-0" id="recordsTableBody">
+<!-- Row 1: Initial Movement Assessment (Active / Selected Row) -->
+<tr class="record-row group cursor-pointer transition-colors bg-surface-container-high" data-record-id="REC-2024-089">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input checked="" class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors flex items-center gap-1.5">
+                      Initial Movement Assessment
+                      <span class="material-symbols-outlined text-[14px] text-tertiary" title="Confidential Protocol">lock</span>
+</span>
+<span class="font-code-num text-[12px] text-outline">REC-2024-089</span>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      SJ
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">Sarah Johnson</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8841</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Assessments
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center text-[10px] font-semibold">
+                      SC
+                    </div>
+<span class="text-on-surface text-sm">Dr. Sarah Chen</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  Oct 20, 2024
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Mid-Quarter Progress Review -->
+<tr class="record-row group cursor-pointer transition-colors hover:bg-surface-container" data-record-id="REC-2024-094">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors flex items-center gap-1.5">
+                      Mid-Quarter Progress Review
+                      <span class="material-symbols-outlined text-[14px] text-tertiary" title="Confidential Protocol">lock</span>
+</span>
+<span class="font-code-num text-[12px] text-outline">REC-2024-094</span>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      MW
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">Michael Williams</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8794</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Progress Reports
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-semibold">
+                      AM
+                    </div>
+<span class="text-on-surface text-sm">Alex Morgan</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  Yesterday, 14:15
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                    Pending Review
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Biomechanical Service Notes -->
+<tr class="record-row group cursor-pointer transition-colors hover:bg-surface-container" data-record-id="REC-2024-099">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                      Biomechanical Service Notes
+                    </span>
+<span class="font-code-num text-[12px] text-outline">REC-2024-099</span>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      EB
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">Emma Brown</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8519</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Session Notes
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface flex items-center justify-center text-[10px] font-semibold">
+                      OM
+                    </div>
+<span class="text-on-surface text-sm">Olivia Martin</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  Oct 22, 2024
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Post-Rehab Customer Follow-up -->
+<tr class="record-row group cursor-pointer transition-colors hover:bg-surface-container" data-record-id="REC-2024-092">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors flex items-center gap-1.5">
+                      Post-Rehab Customer Follow-up
+                      <span class="material-symbols-outlined text-[14px] text-tertiary" title="Confidential Protocol">lock</span>
+</span>
+<span class="font-code-num text-[12px] text-outline">REC-2024-092</span>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-secondary/20 text-secondary flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      JA
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">James Anderson</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8652</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Follow-ups
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center text-[10px] font-semibold">
+                      SC
+                    </div>
+<span class="text-on-surface text-sm">Dr. Sarah Chen</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  Oct 21, 2024
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Youth Athlete Development Review -->
+<tr class="record-row group cursor-pointer transition-colors hover:bg-surface-container" data-record-id="REC-2024-103">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors flex items-center gap-1.5">
+                      Youth Athlete Development Review
+                      <span class="material-symbols-outlined text-[14px] text-tertiary">lock</span>
+</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-code-num text-[12px] text-outline">REC-2024-103</span>
+<span class="px-1.5 py-0.2 rounded bg-primary/10 text-primary text-[10px] font-semibold">Consent Signed</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      OS
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">Olivia Smith</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8730</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Progress Reports
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface flex items-center justify-center text-[10px] font-semibold">
+                      ER
+                    </div>
+<span class="text-on-surface text-sm">Coach Elena R.</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  4h ago
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                    Pending Review
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: General Facility Intake & Health Declaration -->
+<tr class="record-row group cursor-pointer transition-colors hover:bg-surface-container" data-record-id="REC-2024-075">
+<td class="px-4 py-3.5 text-center" onclick="event.stopPropagation()">
+<input class="rounded bg-surface-container-low accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                      General Facility Intake &amp; Health Declaration
+                    </span>
+<span class="font-code-num text-[12px] text-outline">REC-2024-075</span>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold">
+                      DW
+                    </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium hover:underline">Daniel Wilson</span>
+<span class="font-code-num text-[11px] text-outline">#CUS-8490</span>
+</div>
+</div>
+</td>
+<td class="px-4 py-3.5">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    General Documents
+                  </span>
+</td>
+<td class="px-4 py-3.5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface flex items-center justify-center text-[10px] font-semibold">
+                      OM
+                    </div>
+<span class="text-on-surface text-sm">Olivia Martin</span>
+</div>
+</td>
+<td class="px-4 py-3.5 text-on-surface-variant font-code-num text-code-num">
+                  Oct 14, 2024
+                </td>
+<td class="px-4 py-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="px-4 py-3.5 text-right" onclick="event.stopPropagation()">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="View details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" title="Edit record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-4 py-3 bg-surface-container-lowest flex flex-wrap items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span>Showing <strong class="text-on-surface">1 to 6</strong> of 1,482 records</span>
+<div class="h-4 w-px bg-surface-variant mx-1"></div>
+<div class="flex items-center gap-1.5">
+<span>Rows per page:</span>
+<select class="bg-surface-container text-on-surface rounded px-2 py-0.5 font-code-num text-code-num focus:outline-none">
+<option>6</option>
+<option>10</option>
+<option>25</option>
+<option>50</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="h-8 px-2.5 rounded hover:bg-surface-container text-on-surface-variant disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="h-8 w-8 rounded bg-primary-container text-on-primary-container font-medium text-xs">1</button>
+<button class="h-8 w-8 rounded hover:bg-surface-container text-on-surface-variant text-xs">2</button>
+<button class="h-8 w-8 rounded hover:bg-surface-container text-on-surface-variant text-xs">3</button>
+<span class="px-1 text-xs">...</span>
+<button class="h-8 w-8 rounded hover:bg-surface-container text-on-surface-variant text-xs">247</button>
+<button class="h-8 px-2.5 rounded hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: Selected Record Preview & Live Audit Activity (~35% -> 4 cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-5 sticky top-[88px]">
+<!-- Card 1: Selected Record Detail Preview -->
+<div class="rounded-xl bg-surface-container-low p-5 shadow-sm flex flex-col gap-5">
+<!-- Preview Header -->
+<div class="flex items-start justify-between gap-3">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-code-num text-xs font-semibold">REC-2024-089</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Assessments</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-1">Initial Movement Assessment</h3>
+</div>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface transition-all" title="Edit Full Record" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+</div>
+<!-- Customer Card Block -->
+<div class="p-3.5 rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+              SJ
+            </div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold">Sarah Johnson</span>
+<span class="font-code-num text-xs text-on-surface-variant">ID: #CUS-8841 • Age 29</span>
+</div>
+</div>
+<a class="p-1.5 rounded hover:bg-surface-container-highest text-primary" href="#" title="Open Customer Profile">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-2 gap-3 text-xs">
+<div class="p-2.5 rounded-lg bg-surface-container-lowest flex flex-col">
+<span class="text-outline uppercase text-[10px] tracking-wider font-semibold">Attending Staff</span>
+<span class="text-on-surface font-medium mt-0.5">Dr. Sarah Chen</span>
+<span class="text-outline text-[11px]">Lead Physiotherapist</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-lowest flex flex-col">
+<span class="text-outline uppercase text-[10px] tracking-wider font-semibold">Last Modified</span>
+<span class="text-on-surface font-code-num mt-0.5">Oct 20, 2024</span>
+<span class="text-secondary text-[11px] flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[12px]">verified</span> Digital Sign-off
+            </span>
+</div>
+</div>
+<!-- Security / Access Tag -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary">encrypted</span>
+<span>Access Level: <strong>Restricted — Tier 2 Clinical / Staff Only</strong></span>
+</div>
+<!-- Record Content Summary / Executive Notes -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Clinical Summary</span>
+<span class="font-code-num text-xs text-outline">v2.1 Final</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface bg-surface-container-lowest p-3 rounded-lg leading-relaxed">
+            Comprehensive baseline kinetic chain analysis and functional range testing prior to initiating high-performance conditioning regimen. Customer demonstrated <strong>15% deficit in left hamstring eccentric loading</strong>. Hip extension within 5 degrees of normal bilaterally.
+          </p>
+</div>
+<!-- Internal Notes & Annotations -->
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Staff Annotations</span>
+<div class="rounded-lg bg-surface-container p-3 flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-xs">
+<span class="font-semibold text-primary">Dr. Chen</span>
+<span class="text-outline font-code-num text-[11px]">Oct 20, 16:40</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "Customer advised to prioritize hamstring eccentric mobility before progressing to heavy isometric loading. Cleared for Phase 1 program with supervision."
+            </p>
+</div>
+</div>
+<!-- Attachments & Verified Signature -->
+<div class="flex flex-col gap-2 pt-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Verified Attachments</span>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-2.5 truncate">
+<span class="material-symbols-outlined text-secondary text-[20px]">picture_as_pdf</span>
+<div class="flex flex-col truncate">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Intake_Biomechanics_V2.pdf</span>
+<span class="font-code-num text-[11px] text-outline">1.4 MB • SHA-256 Validated</span>
+</div>
+</div>
+<button class="p-1 rounded text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- Action Row -->
+<div class="flex items-center gap-2 pt-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>Print Report</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Secure Share</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Recent Activity / Audit Log Panel -->
+<div class="rounded-xl bg-surface-container-low p-5 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">dynamic_feed</span>
+<h4 class="font-title-sm text-title-sm text-on-surface font-semibold">Real-Time Audit Trail</h4>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary text-[10px] font-semibold uppercase tracking-wider">Live</span>
+</div>
+<div class="flex flex-col gap-3.5 relative">
+<!-- Timeline Vertical line -->
+<div class="absolute left-2.5 top-2 bottom-2 w-px bg-surface-variant"></div>
+<!-- Activity Item 1 -->
+<div class="flex items-start gap-3 relative pl-6">
+<div class="absolute left-1.5 top-1.5 w-2 h-2 rounded-full bg-primary ring-4 ring-surface-container-low"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>Alex Morgan</strong> updated progress notes for <span class="text-primary font-medium">Michael Williams</span>
+</span>
+<span class="font-code-num text-xs text-outline mt-0.5">2 hours ago • Automated Snapshot</span>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-start gap-3 relative pl-6">
+<div class="absolute left-1.5 top-1.5 w-2 h-2 rounded-full bg-secondary ring-4 ring-surface-container-low"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>Coach Elena R.</strong> uploaded consent &amp; new assessment for <span class="text-primary font-medium">Olivia Smith</span>
+</span>
+<span class="font-code-num text-xs text-outline mt-0.5">4 hours ago • Guardian e-Signature</span>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-start gap-3 relative pl-6">
+<div class="absolute left-1.5 top-1.5 w-2 h-2 rounded-full bg-surface-variant ring-4 ring-surface-container-low"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>Olivia Martin</strong> signed off biomechanical notes for <span class="text-primary font-medium">Emma Brown</span>
+</span>
+<span class="font-code-num text-xs text-outline mt-0.5">Yesterday, 16:30 • Verified</span>
+</div>
+</div>
+<!-- Activity Item 4 -->
+<div class="flex items-start gap-3 relative pl-6">
+<div class="absolute left-1.5 top-1.5 w-2 h-2 rounded-full bg-tertiary ring-4 ring-surface-container-low"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>System Audit</strong>: Exported quarterly compliance archive to cold vault
+              </span>
+<span class="font-code-num text-xs text-outline mt-0.5">Oct 21, 09:12 • Admin Auth</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2 text-center rounded-lg hover:bg-surface-container text-primary font-label-sm text-label-sm font-semibold transition-colors mt-1" type="button">
+          View Complete Security Log →
+        </button>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Filter tabs visual toggle
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        t.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+        t.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      tab.classList.add('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+      tab.classList.remove('bg-surface-container', 'text-on-surface-variant');
+    });
+  });
+
+  // Table row select interaction
+  const rows = document.querySelectorAll('.record-row');
+  rows.forEach(row => {
+    row.addEventListener('click', () => {
+      rows.forEach(r => {
+        r.classList.remove('bg-surface-container-high');
+        r.classList.add('hover:bg-surface-container');
+      });
+      row.classList.add('bg-surface-container-high');
+      row.classList.remove('hover:bg-surface-container');
+    });
+  });
+
+  // Quick Toast Trigger
+  const addBtn = document.getElementById('addRecordBtn');
+  const toast = document.getElementById('statusToast');
+  const toastMsg = document.getElementById('toastMessage');
+
+  function showToast(message) {
+    if (!toast) return;
+    toastMsg.textContent = message;
+    toast.classList.remove('translate-y-16', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-16', 'opacity-0');
+    }, 2800);
+  }
+
+  if (addBtn) {
+    addBtn.addEventListener('click', () => {
+      showToast('Opening Record Creation Modal...');
+    });
+  }
+
+  // Keyboard shortcut listener for Search
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    }
+  });
+</script></main></div></body></html>
