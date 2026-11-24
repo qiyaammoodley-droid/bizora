@@ -1,10 +1,14 @@
 
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+
 import AuthPage from './components/AuthPage';
 import WorkspaceSetup from './components/WorkspaceSetup';
 import AppLayout from './components/layout/AppLayout';
+
 import Customers from './pages/Customers';
+import Bookings from './pages/Bookings';
+
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -87,11 +91,12 @@ function App() {
         return;
       }
 
-      const { data: organisation, error: organisationError } = await supabase
-        .from('organisations')
-        .select('name')
-        .eq('id', membership.organisation_id)
-        .single();
+      const { data: organisation, error: organisationError } =
+        await supabase
+          .from('organisations')
+          .select('name')
+          .eq('id', membership.organisation_id)
+          .single();
 
       if (!mounted) return;
 
@@ -150,7 +155,9 @@ function App() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-bizora-background">
-        <p className="font-medium text-bizora-primary">Loading Bizora...</p>
+        <p className="font-medium text-bizora-primary">
+          Loading Bizora...
+        </p>
       </div>
     );
   }
@@ -175,7 +182,9 @@ function App() {
         <p className="mb-4 text-red-400">
           We couldn't load your business workspace.
         </p>
-        <p className="mb-6 text-sm text-gray-400">{workspaceError}</p>
+        <p className="mb-6 text-sm text-gray-400">
+          {workspaceError}
+        </p>
         <button
           onClick={() => window.location.reload()}
           className="rounded-lg bg-bizora-primary px-5 py-2 text-white"
@@ -210,6 +219,11 @@ function App() {
     >
       {activePage === 'Customers' ? (
         <Customers
+          organisationId={workspaceId}
+          userId={session.user.id}
+        />
+      ) : activePage === 'Bookings & Scheduling' ? (
+        <Bookings
           organisationId={workspaceId}
           userId={session.user.id}
         />
