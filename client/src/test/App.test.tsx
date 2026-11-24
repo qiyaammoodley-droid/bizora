@@ -1,22 +1,67 @@
 
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from '../App';
 
-describe('Bizora App', () => {
-  it('displays the Bizora heading', () => {
-    render(<App />);
+const {
+  getSessionMock,
+  onAuthStateChangeMock,
+  unsubscribeMock,
+} = vi.hoisted(() => ({
+  getSessionMock: vi.fn(),
+  onAuthStateChangeMock: vi.fn(),
+  unsubscribeMock: vi.fn(),
+}));
 
-    expect(
-      screen.getByRole('heading', { name: /bizora/i })
-    ).toBeInTheDocument();
+vi.mock('../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: getSessionMock,
+      onAuthStateChange: onAuthStateChangeMock,
+    },
+  },
+}));
+
+describe('Bizora App', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    getSessionMock.mockReturnValue(
+      new Promise(() => {}),
+    );
+
+    onAuthStateChangeMock.mockReturnValue({
+      data: {
+        subscription: {
+          unsubscribe: unsubscribeMock,
+        },
+      },
+    });
   });
 
-  it('displays the frontend ready message', () => {
+  it('displays the loading screen while checking authentication', () => {
     render(<App />);
 
-    expect(
-      screen.getByText(/frontend environment ready/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText('Loading Bizora...')).toBeInTheDocument();
+  });
+
+  it('checks the current Supabase authentication session', () => {
+    render(<App />);
+
+    expect(getSessionMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('subscribes to Supabase authentication changes', () => {
+    render(<App />);
+
+    expect(onAuthStateChangeMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('unsubscribes from authentication changes when unmounted', () => {
+    const { unmount } = render(<App />);
+
+    unmount();
+
+    expect(unsubscribeMock).toHaveBeenCalledTimes(1);
   });
 });
