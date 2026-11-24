@@ -8,6 +8,7 @@ import AppLayout from './components/layout/AppLayout';
 
 import Customers from './pages/Customers';
 import Bookings from './pages/Bookings';
+import Invoices from './pages/Invoices';
 
 import { supabase } from './lib/supabase';
 
@@ -17,6 +18,7 @@ function App() {
   const [workspaceLoading, setWorkspaceLoading] = useState(false);
   const [workspaceName, setWorkspaceName] = useState('');
   const [workspaceId, setWorkspaceId] = useState('');
+  const [userRole, setUserRole] = useState('');
   const [hasWorkspace, setHasWorkspace] = useState(false);
   const [workspaceError, setWorkspaceError] = useState('');
   const [activePage, setActivePage] = useState('Dashboard');
@@ -59,6 +61,7 @@ function App() {
         setHasWorkspace(false);
         setWorkspaceName('');
         setWorkspaceId('');
+        setUserRole('');
         setWorkspaceLoading(false);
         setWorkspaceError('');
         setActivePage('Dashboard');
@@ -68,12 +71,13 @@ function App() {
       setWorkspaceLoading(true);
       setWorkspaceError('');
 
-      const { data: membership, error: membershipError } = await supabase
-        .from('memberships')
-        .select('organisation_id, role')
-        .eq('user_id', session.user.id)
-        .limit(1)
-        .maybeSingle();
+      const { data: membership, error: membershipError } =
+        await supabase
+          .from('memberships')
+          .select('organisation_id, role')
+          .eq('user_id', session.user.id)
+          .limit(1)
+          .maybeSingle();
 
       if (!mounted) return;
 
@@ -87,6 +91,7 @@ function App() {
         setHasWorkspace(false);
         setWorkspaceName('');
         setWorkspaceId('');
+        setUserRole('');
         setWorkspaceLoading(false);
         return;
       }
@@ -108,6 +113,7 @@ function App() {
 
       setWorkspaceId(membership.organisation_id);
       setWorkspaceName(organisation.name);
+      setUserRole(membership.role);
       setHasWorkspace(true);
       setWorkspaceLoading(false);
     };
@@ -133,7 +139,7 @@ function App() {
 
     const { data: membership, error } = await supabase
       .from('memberships')
-      .select('organisation_id')
+      .select('organisation_id, role')
       .eq('user_id', session?.user.id ?? '')
       .limit(1)
       .maybeSingle();
@@ -148,6 +154,7 @@ function App() {
 
     setWorkspaceName(name);
     setWorkspaceId(membership.organisation_id);
+    setUserRole(membership.role);
     setHasWorkspace(true);
     setWorkspaceLoading(false);
   };
@@ -213,6 +220,7 @@ function App() {
     <AppLayout
       organisationName={workspaceName}
       userEmail={session.user.email ?? ''}
+      userRole={userRole}
       onSignOut={handleLogout}
       activePage={activePage}
       onNavigate={setActivePage}
@@ -227,6 +235,22 @@ function App() {
           organisationId={workspaceId}
           userId={session.user.id}
         />
+      ) : activePage === 'Payments & Invoices' ? (
+        userRole === 'owner' || userRole === 'admin' ? (
+          <Invoices
+            organisationId={workspaceId}
+            userId={session.user.id}
+          />
+        ) : (
+          <section>
+            <h1 className="text-2xl font-bold text-white">
+              Access restricted
+            </h1>
+            <p className="mt-2 text-gray-400">
+              You do not have permission to view financial information.
+            </p>
+          </section>
+        )
       ) : (
         <section>
           <p className="mb-2 text-sm font-medium text-bizora-primary">

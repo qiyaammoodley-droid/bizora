@@ -18,6 +18,7 @@ type SidebarProps = {
   onNavigate: (page: string) => void;
   mobileOpen: boolean;
   onClose: () => void;
+  userRole: string;
 };
 
 const navigation = [
@@ -52,7 +53,11 @@ function Sidebar({
   onNavigate,
   mobileOpen,
   onClose,
+  userRole,
 }: SidebarProps) {
+  const canViewFinancials =
+    userRole === 'owner' || userRole === 'admin';
+
   return (
     <>
       {mobileOpen && (
@@ -88,42 +93,50 @@ function Sidebar({
         </div>
 
         <nav className="flex-1 space-y-8 overflow-y-auto px-4 py-7">
-          {navigation.map((section) => (
-            <div key={section.label}>
-              <p className="mb-3 px-3 text-[10px] font-bold tracking-[0.16em] text-gray-500">
-                {section.label}
-              </p>
+          {navigation.map((section) => {
+            const visibleItems = section.items.filter(
+              (item) =>
+                item.name !== 'Payments & Invoices' ||
+                canViewFinancials,
+            );
 
-              <div className="space-y-1">
-                {section.items.map((item) => {
-                  const Icon = item.icon;
-                  const active = activePage === item.name;
+            return (
+              <div key={section.label}>
+                <p className="mb-3 px-3 text-[10px] font-bold tracking-[0.16em] text-gray-500">
+                  {section.label}
+                </p>
 
-                  return (
-                    <button
-                      key={item.name}
-                      onClick={() => {
-                        onNavigate(item.name);
-                        onClose();
-                      }}
-                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-[13px] font-medium transition ${
-                        active
-                          ? 'bg-bizora-primary/15 text-bizora-primary'
-                          : 'text-gray-400 hover:bg-bizora-elevated hover:text-white'
-                      }`}
-                    >
-                      <Icon size={18} />
-                      <span>{item.name}</span>
+                <div className="space-y-1">
+                  {visibleItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = activePage === item.name;
 
-                      {active && (
-                        <span className="ml-auto h-5 w-1 rounded-full bg-bizora-primary" />
-                      )}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={item.name}
+                        onClick={() => {
+                          onNavigate(item.name);
+                          onClose();
+                        }}
+                        className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-[13px] font-medium transition ${
+                          active
+                            ? 'bg-bizora-primary/15 text-bizora-primary'
+                            : 'text-gray-400 hover:bg-bizora-elevated hover:text-white'
+                        }`}
+                      >
+                        <Icon size={18} />
+                        <span>{item.name}</span>
+
+                        {active && (
+                          <span className="ml-auto h-5 w-1 rounded-full bg-bizora-primary" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="border-t border-bizora-border p-4">
