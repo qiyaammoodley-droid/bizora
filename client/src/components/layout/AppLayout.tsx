@@ -6,6 +6,7 @@ import Topbar from './Topbar';
 type AppLayoutProps = {
   organisationName: string;
   userEmail: string;
+  userRole: string;
   onSignOut: () => void;
   activePage: string;
   onNavigate: (page: string) => void;
@@ -15,6 +16,7 @@ type AppLayoutProps = {
 function AppLayout({
   organisationName,
   userEmail,
+  userRole,
   onSignOut,
   activePage,
   onNavigate,
@@ -29,6 +31,7 @@ function AppLayout({
         onNavigate={onNavigate}
         mobileOpen={mobileOpen}
         onClose={() => setMobileOpen(false)}
+        userRole={userRole}
       />
 
       <div className="min-h-screen lg:pl-[248px]">
