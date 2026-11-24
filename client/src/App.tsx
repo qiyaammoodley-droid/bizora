@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from 'react';
-import { LogOut, Building2, LayoutDashboard } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 import AuthPage from './components/AuthPage';
 import WorkspaceSetup from './components/WorkspaceSetup';
+import AppLayout from './components/layout/AppLayout';
+import Customers from './pages/Customers';
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -11,8 +12,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [workspaceLoading, setWorkspaceLoading] = useState(false);
   const [workspaceName, setWorkspaceName] = useState('');
+  const [workspaceId, setWorkspaceId] = useState('');
   const [hasWorkspace, setHasWorkspace] = useState(false);
   const [workspaceError, setWorkspaceError] = useState('');
+  const [activePage, setActivePage] = useState('Dashboard');
 
   useEffect(() => {
     let mounted = true;
@@ -30,7 +33,7 @@ function App() {
       }
     };
 
-    loadSession();
+    void loadSession();
 
     const {
       data: { subscription },
@@ -51,8 +54,10 @@ function App() {
       if (!session) {
         setHasWorkspace(false);
         setWorkspaceName('');
+        setWorkspaceId('');
         setWorkspaceLoading(false);
         setWorkspaceError('');
+        setActivePage('Dashboard');
         return;
       }
 
@@ -69,9 +74,7 @@ function App() {
       if (!mounted) return;
 
       if (membershipError) {
-        console.error('Could not load membership:', membershipError.message);
         setWorkspaceError(membershipError.message);
-        setHasWorkspace(false);
         setWorkspaceLoading(false);
         return;
       }
@@ -79,6 +82,7 @@ function App() {
       if (!membership) {
         setHasWorkspace(false);
         setWorkspaceName('');
+        setWorkspaceId('');
         setWorkspaceLoading(false);
         return;
       }
@@ -92,19 +96,18 @@ function App() {
       if (!mounted) return;
 
       if (organisationError) {
-        console.error('Could not load organisation:', organisationError.message);
         setWorkspaceError(organisationError.message);
-        setHasWorkspace(false);
         setWorkspaceLoading(false);
         return;
       }
 
+      setWorkspaceId(membership.organisation_id);
       setWorkspaceName(organisation.name);
       setHasWorkspace(true);
       setWorkspaceLoading(false);
     };
 
-    loadWorkspace();
+    void loadWorkspace();
 
     return () => {
       mounted = false;
@@ -119,10 +122,35 @@ function App() {
     }
   };
 
+  const handleWorkspaceCreated = async (name: string) => {
+    setWorkspaceLoading(true);
+    setWorkspaceError('');
+
+    const { data: membership, error } = await supabase
+      .from('memberships')
+      .select('organisation_id')
+      .eq('user_id', session?.user.id ?? '')
+      .limit(1)
+      .maybeSingle();
+
+    if (error || !membership) {
+      setWorkspaceError(
+        error?.message ?? 'Your workspace was created, but could not be loaded.',
+      );
+      setWorkspaceLoading(false);
+      return;
+    }
+
+    setWorkspaceName(name);
+    setWorkspaceId(membership.organisation_id);
+    setHasWorkspace(true);
+    setWorkspaceLoading(false);
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-bizora-background flex items-center justify-center">
-        <p className="text-bizora-primary font-medium">Loading Bizora...</p>
+      <div className="flex min-h-screen items-center justify-center bg-bizora-background">
+        <p className="font-medium text-bizora-primary">Loading Bizora...</p>
       </div>
     );
   }
@@ -133,8 +161,8 @@ function App() {
 
   if (workspaceLoading) {
     return (
-      <div className="min-h-screen bg-bizora-background flex items-center justify-center">
-        <p className="text-bizora-primary font-medium">
+      <div className="flex min-h-screen items-center justify-center bg-bizora-background">
+        <p className="font-medium text-bizora-primary">
           Loading your workspace...
         </p>
       </div>
@@ -143,14 +171,14 @@ function App() {
 
   if (workspaceError) {
     return (
-      <div className="min-h-screen bg-bizora-background flex flex-col items-center justify-center px-6 text-center">
-        <p className="text-red-400 mb-4">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-bizora-background px-6 text-center">
+        <p className="mb-4 text-red-400">
           We couldn't load your business workspace.
         </p>
-        <p className="text-gray-400 text-sm mb-6">{workspaceError}</p>
+        <p className="mb-6 text-sm text-gray-400">{workspaceError}</p>
         <button
           onClick={() => window.location.reload()}
-          className="bg-bizora-primary text-white px-5 py-2 rounded-lg"
+          className="rounded-lg bg-bizora-primary px-5 py-2 text-white"
         >
           Try again
         </button>
@@ -167,73 +195,38 @@ function App() {
     return (
       <WorkspaceSetup
         initialBusinessName={initialBusinessName}
-        onWorkspaceCreated={(name) => {
-          setWorkspaceName(name);
-          setHasWorkspace(true);
-        }}
+        onWorkspaceCreated={handleWorkspaceCreated}
       />
     );
   }
 
   return (
-    <div className="min-h-screen bg-bizora-background text-white">
-      <header className="h-20 border-b border-bizora-border bg-bizora-sidebar px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="bg-bizora-primary p-2 rounded-lg">
-            <Building2 size={22} />
-          </div>
-
-          <span className="text-xl font-bold">Bizora</span>
-        </div>
-
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 text-gray-400 hover:text-white transition"
-        >
-          <LogOut size={18} />
-          <span>Sign out</span>
-        </button>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        <div className="mb-10">
-          <p className="text-bizora-primary text-sm font-medium mb-2">
+    <AppLayout
+      organisationName={workspaceName}
+      userEmail={session.user.email ?? ''}
+      onSignOut={handleLogout}
+      activePage={activePage}
+      onNavigate={setActivePage}
+    >
+      {activePage === 'Customers' ? (
+        <Customers
+          organisationId={workspaceId}
+          userId={session.user.id}
+        />
+      ) : (
+        <section>
+          <p className="mb-2 text-sm font-medium text-bizora-primary">
             BUSINESS WORKSPACE
           </p>
-
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold text-white">
             Welcome to {workspaceName}
           </h1>
-
-          <p className="text-gray-400 mt-2">
+          <p className="mt-2 text-gray-400">
             Your Bizora workspace is ready.
           </p>
-        </div>
-
-        <div className="bg-bizora-surface border border-bizora-border rounded-xl p-6 max-w-md">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="bg-bizora-elevated p-3 rounded-lg">
-              <LayoutDashboard size={22} className="text-bizora-primary" />
-            </div>
-
-            <div>
-              <h2 className="font-semibold">Account overview</h2>
-              <p className="text-sm text-gray-400">
-                Your authenticated account
-              </p>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-400 mb-2">Signed in as</p>
-          <p className="text-white break-all">{session.user.email}</p>
-
-          <div className="mt-5 inline-flex items-center gap-2 text-sm text-bizora-success">
-            <span className="w-2 h-2 rounded-full bg-bizora-success" />
-            Authentication active
-          </div>
-        </div>
-      </main>
-    </div>
+        </section>
+      )}
+    </AppLayout>
   );
 }
 
