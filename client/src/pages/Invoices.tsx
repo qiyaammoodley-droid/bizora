@@ -10,6 +10,8 @@ import {
   RefreshCw,
   Eye,
   Send,
+  Wallet,
+  History,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -45,6 +47,12 @@ type Payment = {
   id: string;
   invoice_id: string;
   amount: number;
+  payment_method: 'cash' | 'eft' | 'card' | 'other';
+  reference: string | null;
+  notes: string | null;
+  payment_date: string;
+  recorded_by: string;
+  created_at: string;
 };
 
 type InvoiceDisplay = Invoice & {
@@ -89,9 +97,20 @@ function formatDate(date: string) {
   });
 }
 
+function formatPaymentDate(date: string) {
+  return new Date(date).toLocaleString('en-ZA', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
 function Invoices({ organisationId, userId }: InvoicesProps) {
   const [invoices, setInvoices] = useState<InvoiceDisplay[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
@@ -102,6 +121,7 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
   const [showForm, setShowForm] = useState(false);
   const [selectedInvoice, setSelectedInvoice] =
     useState<InvoiceDisplay | null>(null);
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
 
   const [customerId, setCustomerId] = useState('');
   const [issueDate, setIssueDate] = useState(today);
@@ -110,6 +130,15 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
   const [lines, setLines] = useState<InvoiceLine[]>([
     { ...emptyLine },
   ]);
+
+  const [paymentAmount, setPaymentAmount] = useState('');
+  const [paymentMethod, setPaymentMethod] =
+    useState<Payment['payment_method']>('eft');
+  const [paymentReference, setPaymentReference] = useState('');
+  const [paymentNotes, setPaymentNotes] = useState('');
+  const [paymentDate, setPaymentDate] = useState(
+    new Date().toISOString().slice(0, 16),
+  );
 
   const loadInvoices = useCallback(async () => {
     setLoading(true);
@@ -139,6 +168,7 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
       );
       setInvoices([]);
       setCustomers([]);
+      setPayments([]);
       setLoading(false);
       return;
     }
@@ -150,6 +180,8 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
 
     if (loadedInvoices.length === 0) {
       setInvoices([]);
+      setPayments([]);
+      setSelectedInvoice(null);
       setLoading(false);
       return;
     }
@@ -168,24 +200,28 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
 
       supabase
         .from('payments')
-        .select('id, invoice_id, amount')
+        .select('*')
         .eq('organisation_id', organisationId)
-        .in('invoice_id', invoiceIds),
+        .in('invoice_id', invoiceIds)
+        .order('payment_date', { ascending: false }),
     ]);
 
     if (itemError || paymentError) {
       setError(
         itemError?.message ??
           paymentError?.message ??
-          'Could not calculate invoice balances.',
+          'Could not load invoice items or payment history.',
       );
       setInvoices([]);
+      setPayments([]);
       setLoading(false);
       return;
     }
 
     const items = (itemData ?? []) as InvoiceItem[];
-    const payments = (paymentData ?? []) as Payment[];
+    const loadedPayments = (paymentData ?? []) as Payment[];
+
+    setPayments(loadedPayments);
 
     const result: InvoiceDisplay[] = loadedInvoices.map((invoice) => {
       const customer = loadedCustomers.find(
@@ -196,13 +232,12 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
         .filter((item) => item.invoice_id === invoice.id)
         .reduce((sum, item) => sum + Number(item.line_total), 0);
 
-      const paid = payments
+      const paid = loadedPayments
         .filter((payment) => payment.invoice_id === invoice.id)
         .reduce((sum, payment) => sum + Number(payment.amount), 0);
 
       const balance = Math.max(total - paid, 0);
 
-      // Payment status is calculated from real invoice and payment data.
       let paymentStatus: string = invoice.status;
 
       if (invoice.status === 'sent') {
@@ -228,6 +263,12 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
     });
 
     setInvoices(result);
+    setSelectedInvoice((current) =>
+      current
+        ? result.find((invoice) => invoice.id === current.id) ?? null
+        : null,
+    );
+
     setLoading(false);
   }, [organisationId]);
 
@@ -419,7 +460,7 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
     }
 
     const confirmed = window.confirm(
-      `Mark ${invoice.invoice_number} as sent?`,
+      `Mark ${invoice.invoice_number} as sent? Once sent, its details will be locked.`,
     );
 
     if (!confirmed) return;
@@ -443,6 +484,83 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
     await loadInvoices();
   };
 
+  const openPaymentForm = () => {
+    if (!selectedInvoice || selectedInvoice.status !== 'sent') return;
+
+    if (selectedInvoice.balance <= 0) {
+      setError('This invoice has no outstanding balance.');
+      return;
+    }
+
+    setPaymentAmount('');
+    setPaymentMethod('eft');
+    setPaymentReference('');
+    setPaymentNotes('');
+    setPaymentDate(new Date().toISOString().slice(0, 16));
+    setError('');
+    setSuccess('');
+    setShowPaymentForm(true);
+  };
+
+  const handleRecordPayment = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+
+    if (!selectedInvoice) return;
+
+    setError('');
+    setSuccess('');
+
+    const amount = Number(paymentAmount);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      setError('Enter a valid payment amount greater than zero.');
+      return;
+    }
+
+    if (amount > selectedInvoice.balance) {
+      setError(
+        `The payment cannot exceed the outstanding balance of ${formatCurrency(selectedInvoice.balance, selectedInvoice.currency)}.`,
+      );
+      return;
+    }
+
+    if (!paymentDate) {
+      setError('Please select the payment date.');
+      return;
+    }
+
+    setSaving(true);
+
+    const { error: paymentError } = await supabase
+      .from('payments')
+      .insert({
+        organisation_id: organisationId,
+        invoice_id: selectedInvoice.id,
+        amount,
+        payment_method: paymentMethod,
+        reference: paymentReference.trim() || null,
+        notes: paymentNotes.trim() || null,
+        payment_date: new Date(paymentDate).toISOString(),
+        recorded_by: userId,
+      });
+
+    setSaving(false);
+
+    if (paymentError) {
+      setError(paymentError.message);
+      return;
+    }
+
+    setShowPaymentForm(false);
+    setSuccess(
+      `${formatCurrency(amount, selectedInvoice.currency)} payment recorded successfully.`,
+    );
+
+    await loadInvoices();
+  };
+
   const statusStyle = (status: string) => {
     switch (status) {
       case 'paid':
@@ -461,6 +579,12 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
   const activeCustomers = customers.filter(
     (customer) => !customer.archived_at,
   );
+
+  const selectedPayments = selectedInvoice
+    ? payments.filter(
+        (payment) => payment.invoice_id === selectedInvoice.id,
+      )
+    : [];
 
   return (
     <section className="space-y-7">
@@ -897,7 +1021,7 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
 
       {selectedInvoice && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto bg-black/75 p-4">
-          <div className="my-auto w-full max-w-xl rounded-2xl border border-bizora-border bg-bizora-surface p-6 shadow-2xl">
+          <div className="my-auto max-h-[95vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-bizora-border bg-bizora-surface p-6 shadow-2xl">
             <div className="mb-5 flex items-start justify-between">
               <div>
                 <p className="text-xs font-medium text-bizora-primary">
@@ -960,19 +1084,275 @@ function Invoices({ organisationId, userId }: InvoicesProps) {
 
             {selectedInvoice.notes && (
               <div className="mt-4">
-                <p className="text-xs text-gray-400">Notes</p>
+                <p className="text-xs text-gray-400">Invoice notes</p>
                 <p className="mt-1 text-sm text-gray-300">
                   {selectedInvoice.notes}
                 </p>
               </div>
             )}
 
+            <div className="mt-6">
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <History size={17} className="text-bizora-primary" />
+                  <h3 className="font-semibold text-white">
+                    Payment history
+                  </h3>
+                </div>
+                <span className="text-xs text-gray-400">
+                  {selectedPayments.length} payments
+                </span>
+              </div>
+
+              {selectedPayments.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-bizora-border p-6 text-center">
+                  <Wallet className="mx-auto mb-2 text-gray-500" size={24} />
+                  <p className="text-sm text-gray-400">
+                    No payments have been recorded for this invoice.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {selectedPayments.map((payment) => (
+                    <div
+                      key={payment.id}
+                      className="rounded-xl border border-bizora-border bg-bizora-background p-4"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-emerald-400">
+                            {formatCurrency(
+                              Number(payment.amount),
+                              selectedInvoice.currency,
+                            )}
+                          </p>
+                          <p className="mt-1 text-xs capitalize text-gray-300">
+                            {payment.payment_method}
+                          </p>
+                        </div>
+                        <p className="text-right text-xs text-gray-400">
+                          {formatPaymentDate(payment.payment_date)}
+                        </p>
+                      </div>
+
+                      {payment.reference && (
+                        <p className="mt-2 text-xs text-gray-400">
+                          Reference: {payment.reference}
+                        </p>
+                      )}
+
+                      {payment.notes && (
+                        <p className="mt-1 text-xs text-gray-500">
+                          {payment.notes}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {selectedInvoice.status === 'sent' &&
+              selectedInvoice.balance > 0 && (
+                <button
+                  onClick={openPaymentForm}
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-bizora-primary px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
+                >
+                  <Plus size={17} />
+                  Record payment
+                </button>
+              )}
+
+            {selectedInvoice.status === 'sent' &&
+              selectedInvoice.balance <= 0 && (
+                <div className="mt-5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-center text-sm text-emerald-400">
+                  This invoice has been fully paid.
+                </div>
+              )}
+
+            {selectedInvoice.status === 'draft' && (
+              <p className="mt-5 text-center text-xs text-gray-500">
+                Mark this invoice as sent before recording a payment.
+              </p>
+            )}
+
             <button
               onClick={() => setSelectedInvoice(null)}
-              className="mt-5 w-full rounded-lg border border-bizora-border px-5 py-3 text-sm text-gray-300"
+              className="mt-3 w-full rounded-lg border border-bizora-border px-5 py-3 text-sm text-gray-300"
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {showPaymentForm && selectedInvoice && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center overflow-y-auto bg-black/80 p-4">
+          <div className="my-auto w-full max-w-lg rounded-2xl border border-bizora-border bg-bizora-surface p-6 shadow-2xl">
+            <div className="mb-6 flex items-start justify-between">
+              <div>
+                <p className="text-xs font-medium text-bizora-primary">
+                  PAYMENT RECORDING
+                </p>
+                <h2 className="mt-2 text-xl font-bold text-white">
+                  Record payment
+                </h2>
+                <p className="mt-1 text-sm text-gray-400">
+                  {selectedInvoice.invoice_number}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowPaymentForm(false)}
+                aria-label="Close payment form"
+                className="text-gray-400 hover:text-white"
+              >
+                <X size={21} />
+              </button>
+            </div>
+
+            <div className="mb-5 rounded-xl border border-bizora-border bg-bizora-background p-4">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Invoice total</span>
+                <span className="text-white">
+                  {formatCurrency(selectedInvoice.total, selectedInvoice.currency)}
+                </span>
+              </div>
+              <div className="mt-2 flex justify-between text-sm">
+                <span className="text-gray-400">Already paid</span>
+                <span className="text-emerald-400">
+                  {formatCurrency(selectedInvoice.paid, selectedInvoice.currency)}
+                </span>
+              </div>
+              <div className="mt-3 flex justify-between border-t border-bizora-border pt-3">
+                <span className="text-sm font-semibold text-gray-300">
+                  Outstanding balance
+                </span>
+                <span className="font-bold text-white">
+                  {formatCurrency(selectedInvoice.balance, selectedInvoice.currency)}
+                </span>
+              </div>
+            </div>
+
+            <form onSubmit={handleRecordPayment} className="space-y-4">
+              <div>
+                <label className="mb-2 block text-sm text-gray-300">
+                  Payment amount (R) *
+                </label>
+                <input
+                  required
+                  type="number"
+                  min="0.01"
+                  max={selectedInvoice.balance}
+                  step="0.01"
+                  value={paymentAmount}
+                  onChange={(event) => setPaymentAmount(event.target.value)}
+                  placeholder="Enter payment amount"
+                  className="w-full rounded-lg border border-bizora-border bg-bizora-background px-4 py-3 text-white outline-none focus:border-bizora-primary"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  Maximum payment: {formatCurrency(selectedInvoice.balance, selectedInvoice.currency)}
+                </p>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm text-gray-300">
+                  Payment method *
+                </label>
+                <select
+                  required
+                  value={paymentMethod}
+                  onChange={(event) =>
+                    setPaymentMethod(event.target.value as Payment['payment_method'])
+                  }
+                  className="w-full rounded-lg border border-bizora-border bg-bizora-background px-4 py-3 text-white"
+                >
+                  <option value="cash">Cash</option>
+                  <option value="eft">EFT / Bank transfer</option>
+                  <option value="card">Card</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm text-gray-300">
+                  Payment date *
+                </label>
+                <input
+                  required
+                  type="datetime-local"
+                  value={paymentDate}
+                  onChange={(event) => setPaymentDate(event.target.value)}
+                  className="w-full rounded-lg border border-bizora-border bg-bizora-background px-4 py-3 text-white"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm text-gray-300">
+                  Reference
+                </label>
+                <input
+                  value={paymentReference}
+                  onChange={(event) => setPaymentReference(event.target.value)}
+                  placeholder="EFT reference or receipt number"
+                  className="w-full rounded-lg border border-bizora-border bg-bizora-background px-4 py-3 text-white"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm text-gray-300">
+                  Notes
+                </label>
+                <textarea
+                  rows={2}
+                  value={paymentNotes}
+                  onChange={(event) => setPaymentNotes(event.target.value)}
+                  placeholder="Optional payment notes"
+                  className="w-full rounded-lg border border-bizora-border bg-bizora-background px-4 py-3 text-white"
+                />
+              </div>
+
+              {paymentAmount &&
+                Number(paymentAmount) > 0 &&
+                Number(paymentAmount) <= selectedInvoice.balance && (
+                  <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3">
+                    <p className="text-xs text-gray-400">
+                      Remaining balance after payment
+                    </p>
+                    <p className="mt-1 font-bold text-emerald-400">
+                      {formatCurrency(
+                        Math.max(
+                          selectedInvoice.balance - Number(paymentAmount),
+                          0,
+                        ),
+                        selectedInvoice.currency,
+                      )}
+                    </p>
+                  </div>
+                )}
+
+              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <button
+                  type="button"
+                  onClick={() => setShowPaymentForm(false)}
+                  className="rounded-lg border border-bizora-border px-5 py-3 text-sm text-gray-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={
+                    saving ||
+                    !paymentAmount ||
+                    Number(paymentAmount) <= 0 ||
+                    Number(paymentAmount) > selectedInvoice.balance
+                  }
+                  className="flex items-center justify-center gap-2 rounded-lg bg-bizora-primary px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <Wallet size={16} />
+                  {saving ? 'Recording payment...' : 'Save payment'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
