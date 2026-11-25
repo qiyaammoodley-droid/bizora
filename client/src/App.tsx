@@ -10,6 +10,8 @@ import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import Bookings from './pages/Bookings';
 import Invoices from './pages/Invoices';
+import BusinessSettings from './pages/BusinessSettings';
+import TeamManagement from './pages/TeamManagement';
 
 import { supabase } from './lib/supabase';
 
@@ -147,7 +149,7 @@ function App() {
 
     if (error || !membership) {
       setWorkspaceError(
-        error?.message ?? 'Your workspace was created, but could not be loaded.',
+        error?.message ?? 'Your workspace was created, but could not be loaded.'
       );
       setWorkspaceLoading(false);
       return;
@@ -261,6 +263,16 @@ function App() {
             </p>
           </section>
         )
+      ) : activePage === 'Business Settings' ? (
+        <BusinessSettings
+          organisationId={workspaceId}
+          userRole={userRole}
+        />
+      ) : activePage === 'Team & Employees' ? (
+        <TeamManagement
+          organisationId={workspaceId}
+          userRole={userRole}
+        />
       ) : (
         <section>
           <p className="mb-2 text-sm font-medium text-bizora-primary">
