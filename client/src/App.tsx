@@ -6,6 +6,7 @@ import AuthPage from './components/AuthPage';
 import WorkspaceSetup from './components/WorkspaceSetup';
 import AppLayout from './components/layout/AppLayout';
 
+import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import Bookings from './pages/Bookings';
 import Invoices from './pages/Invoices';
@@ -189,9 +190,11 @@ function App() {
         <p className="mb-4 text-red-400">
           We couldn't load your business workspace.
         </p>
+
         <p className="mb-6 text-sm text-gray-400">
           {workspaceError}
         </p>
+
         <button
           onClick={() => window.location.reload()}
           className="rounded-lg bg-bizora-primary px-5 py-2 text-white"
@@ -225,7 +228,13 @@ function App() {
       activePage={activePage}
       onNavigate={setActivePage}
     >
-      {activePage === 'Customers' ? (
+      {activePage === 'Dashboard' ? (
+        <Dashboard
+          organisationId={workspaceId}
+          userRole={userRole}
+          onNavigate={setActivePage}
+        />
+      ) : activePage === 'Customers' ? (
         <Customers
           organisationId={workspaceId}
           userId={session.user.id}
@@ -246,6 +255,7 @@ function App() {
             <h1 className="text-2xl font-bold text-white">
               Access restricted
             </h1>
+
             <p className="mt-2 text-gray-400">
               You do not have permission to view financial information.
             </p>
@@ -256,9 +266,11 @@ function App() {
           <p className="mb-2 text-sm font-medium text-bizora-primary">
             BUSINESS WORKSPACE
           </p>
+
           <h1 className="text-3xl font-bold text-white">
             Welcome to {workspaceName}
           </h1>
+
           <p className="mt-2 text-gray-400">
             Your Bizora workspace is ready.
           </p>
