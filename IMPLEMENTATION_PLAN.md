@@ -1,150 +1,97 @@
-# Bizora Implementation Plan
+# Bizora Implementation Plan and Delivery Handover
 
-**Status:** Initial plan  
-**Method:** PRD → Stitch designs → plan → Issues/branches/PRs → TDD build → deploy
+**Project status:** Core MVP deployed to Vercel. Remaining work is documentation, demo, portfolio integration and post-capstone hardening.
 
-## Working agreements
+## 1. Delivered
 
-- `main` remains deployable.
-- Work through small, focused Issues and feature branches.
-- Open a pull request for each coherent change.
-- Run lint, typecheck, tests and build before merge.
-- Write tests before or alongside implementation (TDD).
-- Never commit secrets or real customer data.
-- Do not mark a feature complete until its end-to-end acceptance criteria pass.
+- [x] React + TypeScript + Vite frontend
+- [x] Tailwind-based dark application shell and navigation
+- [x] Supabase Auth integration
+- [x] Organisation workspace setup and membership lookup
+- [x] Role-aware navigation/access handling
+- [x] Customer management workflows
+- [x] Booking and scheduling workflows
+- [x] Invoice creation and line items
+- [x] Manual payment recording, including partial payments
+- [x] Dashboard with customer, booking and invoice summaries
+- [x] GitHub Actions CI configuration
+- [x] Production Vercel project connected to GitHub
+- [x] Production deployment from `main` commit `711a11d`
+- [x] Local lint, production build and test commands passed
+- [x] User manually verified the core pages locally and viewed the production dashboard
 
-## Phase 0 — Repository and design foundation
+## 2. Current production details
 
-Deliverables:
-- Public repository and this documentation.
-- Stitch project and exported designs in `docs/designs/`.
-- Premium dark design system: charcoal surfaces, violet primary accent, restrained semantic colours.
-- Responsive application shell and navigation.
-- CI workflow.
+- **Live URL:** https://bizora-qiyaam.vercel.app
+- **Repository:** https://github.com/qiyaammoodley-droid/bizora
+- **Production branch:** `main`
+- **Dashboard integration commit:** `711a11d`
+- **Hosting:** Vercel
+- **Database/auth:** Supabase
 
-Suggested issues:
-1. Initialise client and server workspace.
-2. Add linting, formatting and TypeScript configuration.
-3. Establish design tokens and reusable UI primitives.
-4. Build responsive application shell.
-5. Add GitHub Actions CI.
+## 3. Current verification
 
-## Phase 1 — Database, authentication and tenant security
+Commands run from the repository root:
 
-Deliverables:
-- Supabase project and hosted PostgreSQL.
-- Versioned SQL migrations.
-- Profiles, organisations and memberships.
-- Supabase Auth integration.
-- Owner and employee roles.
-- RLS policies and API authorisation middleware.
+```powershell
+npm --prefix client run lint
+npm --prefix client run build
+npm --prefix client run test:run
+```
 
-Suggested issues:
-6. Create initial schema and migrations.
-7. Implement registration, login and logout.
-8. Implement organisation creation and membership.
-9. Implement owner/employee permissions.
-10. Add cross-tenant isolation tests.
+Recorded result:
+- ESLint passed.
+- TypeScript compilation and Vite build passed.
+- Vitest reported 4 passing tests.
 
-Security gate: do not proceed to real customer data until tenant isolation is tested through both API and database access paths.
+The Vite build prints a non-blocking advisory because the minified JavaScript bundle exceeds 500 kB. Code splitting is a future optimisation.
 
-## Phase 2 — Customer management
+The automated tests currently focus on authentication/session lifecycle. Manual verification of customer, booking and invoice workflows is not a substitute for comprehensive automated tests.
 
-Deliverables:
-- Customer list, search and filters.
-- Create/edit/archive workflows.
-- Customer detail view and service history shell.
+## 4. Remaining capstone submission tasks
 
-Suggested issues:
-11. Customer API and validation.
-12. Customer list and search UI.
-13. Customer create/edit forms.
-14. Customer detail and archive workflow.
+- [ ] Verify production login and the main workflows on the deployed URL.
+- [ ] Replace repository README with the final accurate version.
+- [ ] Record a 4–5 minute Loom pitch and product demo.
+- [ ] Add Loom URL to README.
+- [ ] Add Bizora to the portfolio project list.
+- [ ] Deploy the portfolio update.
+- [ ] Verify repository, live app, portfolio and Loom links.
+- [ ] Submit the required links and project details.
 
-## Phase 3 — Scheduling and attendance
+## 5. Post-capstone technical backlog
 
-Deliverables:
-- Appointment/session API.
-- Calendar/list views.
-- Staff assignment.
-- Attendance status updates.
+Priority 1:
+- Add integration tests for customer, booking and invoice/payment workflows.
+- Add database-level RLS and cross-tenant isolation tests.
+- Review production Supabase policies and role permissions.
+- Ensure unfinished navigation items are clearly labelled or hidden.
 
-Suggested issues:
-15. Appointment schema and API.
-16. Scheduling UI.
-17. Attendance workflow and tests.
+Priority 2:
+- Employee invitations and team management.
+- Business records and customer/service notes.
+- Reports and analytics.
+- Business settings and role administration.
 
-## Phase 4 — Invoices and payments
+Priority 3:
+- Bundle code splitting and performance optimisation.
+- Expanded accessibility and mobile QA.
+- Payment gateway integration after provider and reconciliation design.
+- Privacy/security review before real customer data is used.
 
-Deliverables:
-- Invoice creation and line items.
-- Payment recording, including partial payments.
-- Outstanding balance calculation.
-- Transaction history.
+## 6. Definition of done for future features
 
-Suggested issues:
-18. Invoice API and calculations.
-19. Invoice list and detail UI.
-20. Record payment workflow.
-21. Financial permissions and audit tests.
-
-## Phase 5 — Records, dashboard and reports
-
-Deliverables:
-- Customer/service notes.
-- Recent activity.
-- Dashboard summaries derived from database records.
-- Empty, loading and error states.
-
-Suggested issues:
-22. Customer records API/UI.
-23. Dashboard metrics API.
-24. Dashboard UI and responsive charts.
-25. Operational report filters.
-
-## Phase 6 — QA, deployment and handover
-
-Deliverables:
-- Unit, integration and end-to-end critical-path tests.
-- CI required checks.
-- Production environment variables and migrations.
-- Frontend and API deployment.
-- README with real URLs, screenshots, test instructions and known issues.
-- Loom demonstration.
-
-Suggested issues:
-26. Complete critical-path test coverage.
-27. Security and responsive QA.
-28. Configure production deployment.
-29. Add real screenshots and final documentation.
-30. Prepare five-minute investor pitch and product demo.
-
-## Branch naming
-
-- `chore/project-setup`
-- `feat/authentication`
-- `feat/organisation-membership`
-- `feat/customer-management`
-- `feat/scheduling`
-- `feat/invoices-payments`
-- `feat/business-records`
-- `feat/dashboard`
-- `test/tenant-isolation`
-- `docs/final-handover`
-
-## Definition of done
-
-A feature is complete only when:
+A future feature should not be marked complete until:
 1. Its acceptance criteria are met.
-2. Data persists in the hosted database where applicable.
-3. API authentication, authorisation and tenant scoping are enforced.
-4. Loading, empty, success and error states are implemented.
+2. Data persists correctly where applicable.
+3. Organisation scope and role permissions are enforced.
+4. Loading, empty, success and error states exist.
 5. Relevant tests pass.
-6. Lint, typecheck and build pass.
-7. The UI is responsive and consistent with Stitch designs.
+6. Lint, typecheck and production build pass.
+7. Responsive behaviour is checked.
 8. Documentation is updated.
-9. The PR is reviewed and merged.
+9. The change is reviewed and merged.
 
-## Deadline prioritisation
+## 7. Demo safety
 
-If time becomes constrained, prioritise secure authentication/tenant isolation, customer management, invoice/payment tracking and a minimal scheduling workflow. Reduce visual complexity and defer non-essential reporting rather than weakening access controls or presenting non-functional features as complete.
+Use a demo workspace and non-sensitive records. Do not show passwords, secret keys, environment files, private customer details or real children's information in the Loom recording.

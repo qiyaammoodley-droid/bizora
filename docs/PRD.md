@@ -1,139 +1,120 @@
-# Product Requirements Document — Bizora
+# Bizora Product Requirements and Delivery Status
 
-**Version:** 1.0  
-**Status:** Initial specification; validate with users before treating assumptions as final.
+**Product:** Bizora  
+**Version:** Capstone MVP, November 2026  
+**Status:** Core operational MVP deployed; additional modules remain planned.
 
 ## 1. Product summary
 
-Bizora is a multi-tenant business operations SaaS for small and medium-sized service businesses. It provides a shared workspace for customer records, staff, scheduling, invoices, payments and service histories.
+Bizora is a multi-tenant business operations workspace for service-based businesses. It brings customer management, booking/scheduling, invoicing and manually recorded payments into one application.
 
-## 2. Problem
+## 2. Problem and intended users
 
-Target businesses often coordinate customers, schedules, payments and records across disconnected tools. This increases administrative effort and makes operational information harder to reconcile.
+Small service businesses may coordinate customers, appointments and payments across spreadsheets, messages, calendars and separate records. Bizora aims to centralise these core workflows.
 
-## 3. Goals
+Primary users are business owners and authorised staff members. The application currently supports an organisation workspace and role-aware access patterns.
 
-- Centralise common service-business workflows.
-- Make payment status and outstanding balances visible.
-- Support scheduling and attendance.
-- Maintain useful customer and service histories.
-- Allow multiple organisations to use the same application without accessing one another's data.
-- Deliver a responsive, accessible interface.
+## 3. Delivered MVP scope
 
-## 4. Non-goals for MVP
+The following core areas are implemented and have been exercised by the project owner:
 
-- Inventory and warehouse management
-- Payroll
-- Full accounting, tax filing or bookkeeping
-- Online payment gateway processing
-- Marketing automation
-- Native mobile applications
-- Complex workflow builder
-- Public customer portal
+### Authentication and workspace
+- Supabase Auth sign-in and sign-out.
+- Workspace setup for a business.
+- Membership lookup to associate a signed-in user with an organisation.
+- Role information loaded for the workspace.
 
-## 5. Users and permissions
+### Dashboard
+- Active customer count.
+- Today's bookings.
+- Upcoming bookings.
+- Outstanding invoice balance and overdue invoice count for owner/admin users.
+- Navigation shortcuts to core modules.
 
-### Owner
-- Manage organisation settings and workspace.
-- Invite and manage employees.
-- Create, view and update customers, appointments, invoices and payments.
-- View organisation reports.
+### Customers
+- Customer records can be created, viewed, updated, searched and archived.
+- Customer data is scoped to the organisation.
 
-### Employee
-- View permitted customers and assigned appointments.
-- Create/update operational records within assigned permissions.
-- Record attendance and service notes.
-- Cannot manage billing settings, invite owners or access restricted financial reports unless explicitly granted.
+### Bookings and scheduling
+- Booking creation and management.
+- Customer association.
+- Schedule/calendar views.
+- Booking status updates.
 
-Platform support access is not part of the MVP. Any future support access must be audited and tightly controlled.
+### Invoices and payments
+- Invoice creation with line items.
+- Invoice status management.
+- Manual recording of payments, including partial payments.
+- Outstanding balance and payment history.
+- Financial page access restricted to owner/admin roles in the application.
 
-## 6. Functional requirements
+**Payment limitation:** The current implementation records payments entered by a user. It does not connect to a payment gateway or independently verify bank/card transactions.
 
-### FR-01 Authentication and workspace
-- Users can register, sign in and sign out.
-- An owner can create an organisation.
-- An owner can invite an employee.
-- Users must belong to an organisation before accessing its workspace.
-- API requests must verify identity, membership, role and organisation scope.
+## 4. Planned / incomplete scope
 
-### FR-02 Customer management
-- Create, view, update, search and archive customers.
-- Store only information needed for the business workflow.
-- Support customer category and contact details.
-- Maintain organisation-scoped customer records.
-- Where a business works with children, support guardian contact and consent metadata only where necessary and after privacy review.
+These areas may appear in navigation or initial product planning but are not completed end-to-end workflows in the current capstone build:
+- Business Records / customer service notes
+- Advanced Reports & Analytics
+- Team & Employees management and invitation workflow
+- Business Settings
+- Roles & Permissions administration UI
+- Automated payment gateway integration
+- Advanced audit log and expanded end-to-end testing
 
-### FR-03 Scheduling and attendance
-- Create appointments or group sessions.
-- Assign a service, staff member and one or more customers as appropriate.
-- Store start/end time and status.
-- Record attendance.
-- Detect conflicting assignments where applicable.
+Do not represent these as completed features in a presentation or portfolio.
 
-### FR-04 Invoices and payments
-- Create invoices with line descriptions, amounts, due dates and customer.
-- Record full or partial payments.
-- Calculate outstanding balance from invoice total less valid recorded payments.
-- Maintain payment history and audit events.
-- Do not claim that a manually recorded payment has been verified by a bank or gateway.
+## 5. Technology and architecture
 
-### FR-05 Business records
-- Create dated customer/service notes.
-- Attribute records to the staff member who created them.
-- Restrict sensitive notes by role.
-- Allow authorised users to review a customer's service history.
+- React 19, TypeScript, Vite 6 and Tailwind CSS
+- Supabase Auth
+- Supabase PostgreSQL
+- Supabase JavaScript client
+- PostgreSQL Row Level Security (RLS)
+- Vitest and React Testing Library
+- GitHub Actions CI
+- Vercel frontend deployment
 
-### FR-06 Dashboard and reports
-- Display organisation-scoped counts and summaries.
-- Show upcoming appointments, recent activity and invoice/payment summaries.
-- Derive figures from persisted records, not hardcoded sample data.
-- Clearly handle empty states.
+The browser application communicates directly with Supabase. The current repository does not contain a separate Express API service.
+
+## 6. Security requirements
+
+- Authentication is handled by Supabase Auth.
+- Organisation membership and role are loaded for the authenticated user.
+- Organisation-scoped access must be enforced through database RLS policies, not only frontend navigation.
+- The Supabase service-role key must never be exposed in browser code.
+- Financial workflows must preserve invoice/payment integrity.
+- Sensitive customer information must be minimised and protected.
 
 ## 7. Non-functional requirements
 
-- Responsive layouts for mobile, tablet and desktop.
-- Server-side validation for all writes.
-- PostgreSQL foreign keys and constraints.
-- Organisation isolation enforced by database policies and API authorisation.
-- Passwords handled by Supabase Auth, not stored by the application.
-- Secrets kept out of source control.
-- Accessible labels, keyboard focus and status text.
-- Useful error handling and auditability for financial changes.
+- Responsive desktop and mobile layouts.
+- Clear loading, empty and error states.
+- Form validation and understandable error messages.
+- Persistent data stored in Supabase.
+- Secrets excluded from source control.
+- Accessible labels and keyboard interaction.
+- Automated checks for critical logic.
 
-## 8. Data model — initial entities
+## 8. Verification status
 
-- `profiles`: application profile linked to auth identity
-- `organisations`: tenant/business workspaces
-- `memberships`: user-to-organisation relationship and role
-- `customers`: organisation-owned customer records
-- `services`: services offered by an organisation
-- `appointments`: scheduled service events
-- `appointment_customers`: customers attending an event
-- `invoices`: customer billing documents
-- `invoice_items`: invoice line items
-- `payments`: recorded payments against invoices
-- `customer_records`: dated service notes/observations
-- `audit_logs`: important changes to financial and access records
+Latest local checks after dashboard integration:
+- ESLint: passed.
+- TypeScript and Vite production build: passed.
+- Vitest: 4 tests passed.
 
-Every tenant-owned table must include `organisation_id`, with appropriate composite foreign keys or equivalent constraints to prevent cross-tenant references.
+The current four automated tests cover the app's authentication/session lifecycle. They do not provide comprehensive automated coverage for all customer, booking, invoice, RLS and tenant-isolation scenarios. The project owner also manually verified the core pages locally and shared a screenshot of the deployed dashboard.
 
-## 9. Acceptance criteria
+## 9. Known limitations and future work
 
-- An unauthenticated user cannot access protected API endpoints.
-- An employee cannot perform owner-only actions.
-- A user in Organisation A cannot read or modify Organisation B data by changing an ID in a request.
-- Customer create/read/update/archive workflows persist in the hosted database.
-- Appointment creation and attendance updates persist and are organisation-scoped.
-- Invoice totals and outstanding balances are calculated consistently.
-- Payment records are linked to the correct organisation and invoice.
-- Dashboard summaries are derived from real records.
-- Critical workflows have automated tests.
-- The deployed application works at desktop and mobile breakpoints.
+- Broaden automated tests, especially RLS/tenant isolation and customer, booking and invoice workflows.
+- Complete unfinished sidebar modules or remove them from navigation until ready.
+- Add employee invitations and membership management.
+- Add advanced operational reporting.
+- Add business records/service notes with appropriate access controls.
+- Consider a payment gateway only after provider, security and reconciliation requirements are defined.
+- Complete production privacy and security review before onboarding real businesses.
+- Confirm commercial name availability before public commercial launch.
 
-## 10. Privacy and safety
+## 10. Privacy note
 
-The product may be used by organisations working with children. The MVP should collect the minimum data required, use least-privilege permissions, protect sensitive notes, record consent where appropriate and undergo a POPIA review before real children's information is entered. The platform is not a medical or developmental diagnostic tool.
-
-## 11. Success measures
-
-Pilot targets will be set after baseline interviews. Measure task completion time, payment reconciliation accuracy, scheduling reliability, active usage and user satisfaction. Do not report targets as achieved results.
+Businesses may store sensitive customer information. The MVP should use test data for demonstrations. Before real-world use, review applicable privacy obligations, data minimisation, retention, access controls and consent requirements, especially if the product is used to store children's information.
