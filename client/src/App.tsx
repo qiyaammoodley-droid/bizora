@@ -12,6 +12,9 @@ import Bookings from './pages/Bookings';
 import Invoices from './pages/Invoices';
 import BusinessSettings from './pages/BusinessSettings';
 import TeamManagement from './pages/TeamManagement';
+import BusinessRecords from './pages/BusinessRecords';
+import Reports from './pages/Reports';
+import RolesPermissions from './pages/RolesPermissions';
 
 import { supabase } from './lib/supabase';
 
@@ -273,6 +276,23 @@ function App() {
           organisationId={workspaceId}
           userRole={userRole}
         />
+      ) : activePage === 'Business Records' ? (
+        <BusinessRecords
+          organisationId={workspaceId}
+          userId={session.user.id}
+          userRole={userRole}
+        />
+      ) : activePage === 'Reports & Analytics' ? (
+        <Reports
+          organisationId={workspaceId}
+          userRole={userRole}
+        />
+      ) : activePage === 'Roles & Permissions' ? (
+        <RolesPermissions
+          organisationId={workspaceId}
+          userId={session.user.id}
+          userRole={userRole}
+        />
       ) : (
         <section>
           <p className="mb-2 text-sm font-medium text-bizora-primary">
@@ -293,3 +313,5 @@ function App() {
 }
 
 export default App;
+
+
